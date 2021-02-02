@@ -1,0 +1,25 @@
+#map-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-map {
+  width: 100vh;
+  max-width: 95%;
+  border: solid 1px gray;
+  cursor: move;
+}
+
+.geography {
+  stroke: rgb(145, 145, 145);
+  stroke-width: 0.5px;
+  outline: none;
+  cursor: default;
+}
+
+.geography:hover {
+  fill: skyblue;
+}
