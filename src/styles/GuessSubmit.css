@@ -1,0 +1,61 @@
+#guess-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#answer-options-list {
+  min-height: 50px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#answer-options-list > * {
+  font-size: 15px;
+  box-sizing: border-box;
+  padding: 4px 10px;
+  margin: 10px 6px;
+  border-radius: 20px;
+  user-select: none;
+}
+
+#submit-guess-button {
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 16px;
+  font-family: inherit;
+  background-color: rgb(195, 240, 208);
+  border: solid 1px rgb(107, 151, 120);
+  color: rgb(51, 70, 57);
+  border-radius: 5px;
+  width: fit-content;
+  box-shadow: var(--default-shadow);
+}
+#submit-guess-button:enabled:hover {
+  background-color: rgb(152, 221, 172);
+}
+#submit-guess-button:disabled {
+  color: inherit;
+  opacity: 0.45;
+}
+#submit-guess-button:focus {
+  outline: none;
+}
+
+.answer-option-unselected {
+  background-color: rgb(255, 240, 211);
+  color: rgb(155, 135, 101);
+}
+
+.answer-option-selected {
+  background-color: rgb(41, 151, 194);
+  color: white;
+}
+
+#find-text {
+  color: rgb(65, 65, 65);
+  font-weight: bold;
+  margin-right: 0;
+}

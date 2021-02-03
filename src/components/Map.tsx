@@ -1,10 +1,9 @@
 import React, { memo, useContext } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import { PatternLines } from '@vx/pattern';
-import '../styles/Map.css';
-import Game from '../logic/game';
 import { observer } from 'mobx-react-lite';
 import { GameContext } from '../App';
+import '../styles/Map.css';
 const mapData = require('../assets/topo.json');
 
 interface Props {
@@ -42,9 +41,9 @@ const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
             <Geographies geography={mapData}>
               {({ geographies }) =>
                 geographies.map(geo => {
-                  const countryName = geo.properties.NAME;
                   const countryId = parseInt(geo.rsmKey.split('-')[1]);
-                  const userGuess = game.getAnswerByCountryId(countryId);
+                  const countryName = game.getCountryNameById(countryId);
+                  const userGuess = game.getUserGuessByCountryId(countryId);
                   const isCompleted = game.completedCountries.includes(countryName);
                   const isAnswerOption = answerOptions.includes(countryName);
                   return (<Geography

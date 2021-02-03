@@ -28,7 +28,7 @@ class Game {
   public uncompletedCountries: string[] = [];
   public completedCountries: string[] = [];
   public answerOptions: string[] = [];
-  public currentUserAnswers: Array<{ id: number, country: string }> = [];
+  public userGuesses: Array<{ id: number, countryName: string }> = [];
   public activeCountryId: number = -1;
 
   constructor() {
@@ -53,10 +53,13 @@ class Game {
     const randomnessAmount = 50;
 
     const sortedByPopulation = [...toJS(this.countryData)].sort((a, b) => a.popRank - b.popRank);
-    let countries: Array<{ name: string, order: number }> = [];
+    let countries: Array<{ id: number, name: string, order: number }> = [];
     for (let i = 0; i < sortedByPopulation.length; i++) {
       const orderOffset = Math.random() * randomnessAmount * 2 - randomnessAmount;
-      countries.push({ name: sortedByPopulation[i].name, order: i + orderOffset });
+      countries.push({ 
+        id: sortedByPopulation[i].id,
+        name: sortedByPopulation[i].name,
+        order: i + orderOffset });
     }
 
     countries.sort((a, b) => a.order - b.order);
@@ -64,14 +67,19 @@ class Game {
   }
 
   private setAnswerOptions() {
-    this.answerOptions = ['Spain', 'Canada', 'Australia'];
-    this.currentUserAnswers = [];
+    this.answerOptions = [this.uncompletedCountries[0], this.uncompletedCountries[1], this.uncompletedCountries[2]];
+    this.userGuesses = [];
     this.answerOptions.forEach(answer => {
-      this.currentUserAnswers.push({
+      this.userGuesses.push({
         id: this.countryData.find(data => data.name === answer)!.id,
-        country: ''
+        countryName: ''
       })
     })
+  }
+
+  public getCountryNameById(id: number) {
+    const country = this.countryData.find(data => data.id === id);
+    return country?.name ?? '';
   }
 
   public setActiveCountryId(newValue: number) {
@@ -79,21 +87,29 @@ class Game {
   } 
 
   public selectAnswer(countryName: string) {
-    const existingAnswer = this.currentUserAnswers.find(answer => answer.country === countryName);
+    const existingAnswer = this.getUserGuessByCountryName(countryName);
     if (existingAnswer) {
-      existingAnswer.country = '';
+      existingAnswer.countryName = '';
     }
-    const answer = this.currentUserAnswers.find(ans => ans.id === this.activeCountryId);
+    const answer = this.userGuesses.find(ans => ans.id === this.activeCountryId);
     if (answer) {
-      answer.country = countryName;
+      answer.countryName = countryName;
     } else {
       throw new Error(`Can't select answer ${countryName} as id ${this.activeCountryId} was not found in list.`)
     }
     this.activeCountryId = -1;
   }
 
-  public getAnswerByCountryId(id: number) {
-    return this.currentUserAnswers.find(ans => ans.id === id)?.country;
+  public getUserGuessByCountryName(countryName: string) {
+    return this.userGuesses.find(answer => answer.countryName === countryName)
+  }
+
+  public getUserGuessByCountryId(id: number) {
+    return this.userGuesses.find(ans => ans.id === id)?.countryName;
+  }
+
+  public allGuessesMade() {
+    return this.userGuesses.every(guess => guess.countryName !== '');
   }
 }
 
