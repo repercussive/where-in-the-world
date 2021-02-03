@@ -1,11 +1,12 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
 type CountryDataItem = {
-  id: number, 
-  name: string
+  id: number,
+  name: string,
+  popRank: number
 }
 
 var firebaseConfig = {
@@ -24,8 +25,11 @@ let db = firebase.firestore();
 
 class Game {
   public countryData: CountryDataItem[] = [];
+  public uncompletedCountries: string[] = [];
   public completedCountries: string[] = [];
   public answerOptions: string[] = [];
+  public currentUserAnswers: Array<{ id: number, country: string }> = [];
+  public activeCountryId: number = -1;
 
   constructor() {
     makeAutoObservable(this);
@@ -33,13 +37,63 @@ class Game {
   }
 
   private async fetchCountryData() {
-    const docRef = await db.collection('validation').doc('answer-validation').get();
+    const docRef = await db.collection('gameData').doc('countryData').get();
     if (!docRef.exists) {
       throw new Error("Country data not found!");
     }
     runInAction(() => {
-      this.countryData = docRef.data()!.countryIds as CountryDataItem[];
+      this.countryData = docRef.data()!.data as CountryDataItem[];
     })
+    this.setQuestionOrder();
+    this.setAnswerOptions();
+  }
+
+  private setQuestionOrder() {
+    // Maximum distance an item index can move when the order is shuffled.
+    const randomnessAmount = 50;
+
+    const sortedByPopulation = [...toJS(this.countryData)].sort((a, b) => a.popRank - b.popRank);
+    let countries: Array<{ name: string, order: number }> = [];
+    for (let i = 0; i < sortedByPopulation.length; i++) {
+      const orderOffset = Math.random() * randomnessAmount * 2 - randomnessAmount;
+      countries.push({ name: sortedByPopulation[i].name, order: i + orderOffset });
+    }
+
+    countries.sort((a, b) => a.order - b.order);
+    countries.forEach(country => this.uncompletedCountries.push(country.name));
+  }
+
+  private setAnswerOptions() {
+    this.answerOptions = ['Spain', 'Canada', 'Australia'];
+    this.currentUserAnswers = [];
+    this.answerOptions.forEach(answer => {
+      this.currentUserAnswers.push({
+        id: this.countryData.find(data => data.name === answer)!.id,
+        country: ''
+      })
+    })
+  }
+
+  public setActiveCountryId(newValue: number) {
+    runInAction(() => this.activeCountryId = newValue);
+  } 
+
+  public selectAnswer(countryName: string) {
+    const existingAnswer = this.currentUserAnswers.find(answer => answer.country === countryName);
+    if (existingAnswer) {
+      existingAnswer.country = '';
+    }
+    const answer = this.currentUserAnswers.find(ans => ans.id === this.activeCountryId);
+    if (answer) {
+      answer.country = countryName;
+    } else {
+      throw new Error(`Can't select answer ${countryName} as id ${this.activeCountryId} was not found in list.`)
+    }
+    this.activeCountryId = -1;
+  }
+
+  public getAnswerByCountryId(id: number) {
+    return this.currentUserAnswers.find(ans => ans.id === id)?.country;
   }
 }
 
