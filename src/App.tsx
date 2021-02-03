@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
-import Map from './components/Map';
+import GameDisplay from './components/GameDisplay';
+import Game from './logic/game';
+
+const game = new Game();
 
 function App() {
   return (
     <div>
-      <Map />
+      <GameDisplay game={game}/>
     </div>
   );
 }

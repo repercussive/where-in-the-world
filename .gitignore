@@ -28,3 +28,4 @@ yarn-error.log*
 # playground
 playground.ts
 /src/assets/topodata.ts
+/src/assets/validation.json

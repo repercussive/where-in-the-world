@@ -1,0 +1,13 @@
+#game {
+  display: flex;
+  justify-content: center;
+}
+
+#answer-options-list {
+  display: flex;
+  justify-content: center;
+}
+
+#answer-options-list > * {
+  margin: 10px 10px;
+}
