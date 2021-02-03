@@ -1,12 +1,13 @@
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useState } from 'react';
-import Game from '../logic/game';
+import React, { useContext, useEffect, useState } from 'react';
 import Map from './Map';
 import '../styles/GameDisplay.css';
 import ReactTooltip from 'react-tooltip';
 import AnswerSelector from './AnswerSelector';
+import { GameContext } from '../App';
 
-const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
+const GameDisplay: React.FC = () => {
+  const game = useContext(GameContext);
   const [answerSelectorPos, setAnswerSelectorPos] = useState([0, 0] as [number, number]);
   const [tooltipContent, setTooltipContent] = useState('');
   const waitingForData = game.countryData.length === 0;
@@ -29,12 +30,11 @@ const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
         </div>
       }
       <Map
-        game={game}
         setTooltip={setTooltipContent}
         setAnswerSelectorPos={setAnswerSelectorPos}
       />
       <ReactTooltip>{tooltipContent}</ReactTooltip>
-      <AnswerSelector game={game} show={game.activeCountryId >= 0} coords={answerSelectorPos} />
+      <AnswerSelector show={game.activeCountryId >= 0} coords={answerSelectorPos} />
     </>
   );
 }

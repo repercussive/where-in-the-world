@@ -1,18 +1,19 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import { PatternLines } from '@vx/pattern';
 import '../styles/Map.css';
 import Game from '../logic/game';
 import { observer } from 'mobx-react-lite';
+import { GameContext } from '../App';
 const mapData = require('../assets/topo.json');
 
 interface Props {
-  game: Game, 
   setTooltip: (content: string) => void,
   setAnswerSelectorPos: (coords: [number, number]) => void
 }
 
-const Map: React.FC<Props> = ({ game, setTooltip, setAnswerSelectorPos }) => {
+const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
+  const game = useContext(GameContext);
   const activeCountryId = game.activeCountryId;
   const answerOptions = game.answerOptions;
 

@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import { GameContext } from '../App';
 import Game from '../logic/game';
 import '../styles/AnswerSelector.css';
 
 interface Props {
-  game: Game,
   show: boolean,
   coords: [number, number]
 }
 
-const AnswerSelector: React.FC<Props> = ({ game, show, coords }) => {
+const AnswerSelector: React.FC<Props> = ({ show, coords }) => {
+  const game = useContext(GameContext);
   const selectorElement = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
