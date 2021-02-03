@@ -1,6 +1,6 @@
+import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useRef } from 'react';
 import { GameContext } from '../App';
-import Game from '../logic/game';
 import '../styles/AnswerSelector.css';
 
 interface Props {
@@ -30,6 +30,7 @@ const AnswerSelector: React.FC<Props> = ({ show, coords }) => {
   return (
     <div>
       <div ref={selectorElement} id="answer-selector">
+        <div id="answer-selector-prompt-text">Where is this?</div>
         {game.answerOptions.map((name, index) => (
           <button
             onClick={() => game.selectAnswer(name)}
@@ -43,4 +44,4 @@ const AnswerSelector: React.FC<Props> = ({ show, coords }) => {
   )
 }
 
-export default AnswerSelector;
+export default observer(AnswerSelector);

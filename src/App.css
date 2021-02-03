@@ -1,0 +1,26 @@
+:root {
+  --default-shadow: rgba(0,0,0,0.06) 0px 1px 5px 3px;
+}
+
+#main-header {
+  display: flex;
+  justify-content: center;
+  margin: 12px;
+  text-align: center;
+}
+
+.title-a {
+  color: rgb(240, 157, 2);
+}
+
+.title-b {
+  color: rgb(173, 173, 173);
+}
+
+.title-c {
+  color: rgb(95, 95, 95);
+}
+
+.title-d {
+  color: rgb(42, 170, 221);
+}

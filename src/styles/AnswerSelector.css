@@ -2,38 +2,39 @@
   --border-color: rgb(173, 173, 173);
   visibility: hidden;
   position: fixed;
-  background-color: white;
-  border: solid 1px var(--border-color);
-  border-radius: 3px;
+  background-color: transparent;
+  border: none;
   padding: 0px;
   margin: -5px 0 0 -5px;
-  box-shadow: rgba(0,0,0,0.06) 0px 1px 5px 3px;
+}
+
+#answer-selector-prompt-text {
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 13px;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 
 .answer-button {
   display: block;
   width: 100%;
   padding: 3px 10px;
+  margin: 5px 0;
   font-family: inherit;
-  font-size: 14px;
-  border-radius: 0;
+  font-size: 15px;
+  border-radius: 20px;
   border: none;
   border-bottom: solid 1px var(--border-color);
+  box-shadow: var(--default-shadow);
   background-color: white;
   user-select: none;
 }
 
-.answer-button:first-child {
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-
-.answer-button:last-child {
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom: none;
-}
-
 .answer-button:hover {
   background-color: rgb(176, 223, 241);
+}
+
+.answer-button:focus {
+  outline: none;
 }
