@@ -8,7 +8,7 @@ const GuessSubmit: React.FC = () => {
   return (
     <div id="guess-submit">
       <div id="answer-options-list">
-        <div id="find-text">Find:</div>
+        <span id="find-text">Find:</span>
         {game.answerOptions.map((country, index) => (
           <div
             key={index}
@@ -22,7 +22,12 @@ const GuessSubmit: React.FC = () => {
           </div>
         ))}
       </div>
-      <button id="submit-guess-button" disabled={!game.allGuessesMade()}>Check answers</button>
+      <button
+        onClick={game.submitGuesses}
+        id="submit-guess-button"
+        disabled={!game.areAllGuessesMade()}>
+        Check answers
+      </button>
     </div>
   )
 }

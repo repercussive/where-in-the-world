@@ -55,6 +55,9 @@
 }
 
 #find-text {
+  position: relative;
+  right: 35px;
+  width: 0;
   color: rgb(65, 65, 65);
   font-weight: bold;
   margin-right: 0;

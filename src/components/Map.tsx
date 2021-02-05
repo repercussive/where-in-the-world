@@ -15,6 +15,7 @@ const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
   const game = useContext(GameContext);
   const activeCountryId = game.activeCountryId;
   const answerOptions = game.answerOptions;
+  const userGuesses = game.userGuesses;
 
   function handleClickCountry(e: React.MouseEvent, countryName: string, countryId: number) {
     e.stopPropagation();
@@ -29,21 +30,17 @@ const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
     <>
       <div id="map-container">
         <ComposableMap id="main-map" data-tip="" onMouseEnter={() => game.setActiveCountryId(-1)}>
-          {/* <PatternLines
-            id="answerOption" height={4} width={4} stroke="#776865" strokeWidth={0.5}
-            background="orange" orientation={["diagonal"]}
-          /> */}
           <PatternLines
             id="answered" height={4} width={4} stroke="#776865" strokeWidth={0.5}
             background="skyblue" orientation={["diagonal"]}
           />
-          <ZoomableGroup>
+          <ZoomableGroup center={[16,0]} >
             <Geographies geography={mapData}>
               {({ geographies }) =>
                 geographies.map(geo => {
                   const countryId = parseInt(geo.rsmKey.split('-')[1]);
                   const countryName = game.getCountryNameById(countryId);
-                  const userGuess = game.getUserGuessByCountryId(countryId);
+                  const userGuess = userGuesses.find(ans => ans.id === countryId)?.countryName;
                   const isCompleted = game.completedCountries.includes(countryName);
                   const isAnswerOption = answerOptions.includes(countryName);
                   return (<Geography
