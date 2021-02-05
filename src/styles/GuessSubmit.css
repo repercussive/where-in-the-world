@@ -12,6 +12,25 @@
   align-items: center;
 }
 
+#find-text {
+  position: relative;
+  right: 35px;
+  width: 0;
+  color: rgb(65, 65, 65);
+  font-weight: bold;
+  margin-right: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  #answer-options-list {
+    flex-direction: column;
+  }
+
+  #find-text {
+    right: 18px;
+  }
+}
+
 #answer-options-list > * {
   font-size: 15px;
   box-sizing: border-box;
@@ -52,13 +71,4 @@
 .answer-option-selected {
   background-color: rgb(41, 151, 194);
   color: white;
-}
-
-#find-text {
-  position: relative;
-  right: 35px;
-  width: 0;
-  color: rgb(65, 65, 65);
-  font-weight: bold;
-  margin-right: 0;
 }

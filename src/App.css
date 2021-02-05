@@ -7,6 +7,13 @@
   justify-content: center;
   margin: 12px;
   text-align: center;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 290px) {
+  #main-header {
+    font-size: 22px;
+  }
 }
 
 .title-a {
