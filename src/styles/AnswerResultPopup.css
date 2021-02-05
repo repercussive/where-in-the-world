@@ -1,0 +1,56 @@
+#answer-result-popup-container {
+  position: fixed;
+  top: 140px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+}
+
+#answer-result-popup-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: solid 1px lightgray;
+  box-shadow: var(--default-shadow);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#answer-result-icon {
+  font-size: 40px;
+}
+
+#answer-result-main-text {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#answer-result-sub-text {
+  font-size: 16px;
+  color: rgb(99, 99, 99);
+}
+
+.answer-result-displayed {
+  visibility: visible;
+  animation: display-result 1.4s forwards ease-in-out;
+}
+
+@keyframes display-result {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  25%, 75% {
+    opacity: 1;
+    transform: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}

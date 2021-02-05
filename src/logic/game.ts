@@ -1,6 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/analytics';
+import { db } from './firebase';
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 
 type CountryDataItem = {
@@ -9,19 +7,7 @@ type CountryDataItem = {
   popRank: number
 }
 
-var firebaseConfig = {
-  apiKey: "AIzaSyCTh2ihwqmq1-ebY3BQpT640qMd0bkiyds",
-  authDomain: "where-in-the-world-1e249.firebaseapp.com",
-  projectId: "where-in-the-world-1e249",
-  storageBucket: "where-in-the-world-1e249.appspot.com",
-  messagingSenderId: "54537784020",
-  appId: "1:54537784020:web:39af78dc86fa8679ee4941",
-  measurementId: "G-6HKPRWMTD3"
-};
-
-if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-let db = firebase.firestore();
+export type AnswerResultEvent = CustomEvent<{ result: 'correct' | 'incorrect' }>
 
 class Game {
   public countryData: CountryDataItem[] = [];
@@ -43,6 +29,11 @@ class Game {
       this.getCountryNameById(guess.id) === guess.countryName
     ))
 
+    const resultEvent: AnswerResultEvent =
+      new CustomEvent('answerResult', {
+        detail: { result: isCorrect ? 'correct' : 'incorrect' }
+      });
+
     if (isCorrect) {
       // TODO: Make sure game can be won.
       this.uncompletedCountries = this.uncompletedCountries.filter(name => !this.answerOptions.includes(name));
@@ -52,6 +43,8 @@ class Game {
       this.lives--;
       this.resetUserGuesses();
     }
+
+    document.dispatchEvent(resultEvent);
   }
 
   public getCountryNameById(id: number) {
