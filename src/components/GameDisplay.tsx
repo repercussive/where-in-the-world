@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import AnswerSelector from './AnswerSelector';
 import { GameContext } from '../App';
 import GuessSubmit from './GuessSubmit';
+import LivesDisplay from './LivesDisplay';
 
 const GameDisplay: React.FC = () => {
   const game = useContext(GameContext);
@@ -21,6 +22,7 @@ const GameDisplay: React.FC = () => {
     <>
       <ReactTooltip>{tooltipContent}</ReactTooltip>
       <AnswerSelector show={game.activeCountryId >= 0} coords={answerSelectorPos} />
+      <LivesDisplay />
       <Map
         setTooltip={setTooltipContent}
         setAnswerSelectorPos={setAnswerSelectorPos}

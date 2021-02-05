@@ -30,6 +30,7 @@ class Game {
   public answerOptions: string[] = [];
   public userGuesses: Array<{ id: number, countryName: string }> = [];
   public activeCountryId: number = -1;
+  public lives = 3;
 
   constructor() {
     makeAutoObservable(this);
@@ -48,6 +49,7 @@ class Game {
       this.answerOptions.forEach(name => this.completedCountries.push(name));
       this.setAnswerOptions();
     } else {
+      this.lives--;
       this.resetUserGuesses();
     }
   }

@@ -1,0 +1,55 @@
+#lives-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+
+#lives-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border: solid 1px rgb(160, 160, 160);
+  border-bottom: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#lives-label {
+  margin-right: 6px;
+  color: rgb(117, 117, 117);
+}
+
+.life {
+  margin: 0 8px;
+  margin-right: -1px;
+  font-size: 18px;
+}
+
+.life-active {
+  color: rgb(235, 131, 166);
+}
+
+.life-lost {
+  animation: lose-life forwards 0.9s cubic-bezier(.16,1.13,.73,.89);
+}
+
+@keyframes lose-life {
+  0% {
+    color: rgb(255, 93, 93);
+    transform: scale(1);
+  }
+
+  50% {
+    color: rgb(230, 21, 21);
+    transform: scale(1.2);
+  }
+
+  100% {
+    color: rgb(200, 200, 200);
+    transform: scale(1);
+  }
+}
