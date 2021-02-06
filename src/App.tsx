@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import './App.css';
 import GameDisplay from './components/GameDisplay';
-import SignInButton from './components/SignInButton';
+import SignInSection from './components/SignInSection';
 import Game from './logic/game';
 
 const game = new Game();
@@ -10,7 +10,7 @@ export const GameContext = createContext<Game>({} as Game);
 function App() {
   return (
     <div>
-      <SignInButton />
+      <SignInSection />
       <h1 id="main-header">
         <span className="title-a">where</span>
         <span className="title-b">in</span>

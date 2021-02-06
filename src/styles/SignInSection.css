@@ -1,0 +1,40 @@
+#sign-in-section {
+  position: relative;
+  top: 10px;
+  width: 100vw; 
+  height: 12px; 
+  display: flex; 
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media only screen and (max-width: 930px) {
+  #sign-in-section {
+    height: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+.sign-in-button {
+  margin: 4px;
+  border: none;
+  outline: none;
+  background-color: rgb(37, 157, 201);
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-shadow: var(--default-shadow);
+}
+
+.sign-in-button:hover {
+  background-color: rgb(28, 131, 168);
+}
+
+.signed-in-text {
+  font-size: 14px;
+  color: rgb(114, 114, 114);
+  margin-right: 5px;
+  font-style: italic;
+}

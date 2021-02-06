@@ -9,6 +9,7 @@ class Authenticator {
   constructor() {
     makeAutoObservable(this);
     this.googleSignIn = this.googleSignIn.bind(this);
+    this.signOut = this.signOut.bind(this);
   }
 
   public googleSignIn() {
@@ -30,6 +31,10 @@ class Authenticator {
         // The firebase.auth.AuthCredential type that was used.
         // const credential = error.credential;
       });
+  }
+
+  public signOut() {
+    auth().signOut().then(() => this.userDisplayName = '');
   }
 
   private setUsername(name: string | null | undefined) {
