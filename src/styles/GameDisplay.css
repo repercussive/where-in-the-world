@@ -1,0 +1,23 @@
+.game-hud-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2px;
+}
+
+.game-hud-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border: solid 1px rgb(160, 160, 160);
+  border-bottom: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.game-hud-label {
+  margin-right: 6px;
+  color: rgb(117, 117, 117);
+}

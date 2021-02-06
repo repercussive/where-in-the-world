@@ -7,6 +7,8 @@ import { GameContext } from '../App';
 import GuessSubmit from './GuessSubmit';
 import LivesDisplay from './LivesDisplay';
 import AnswerResultPopup from './AnswerResultPopup';
+import ScoreDisplay from './ScoreDisplay';
+import '../styles/GameDisplay.css';
 
 const GameDisplay: React.FC = () => {
   const game = useContext(GameContext);
@@ -23,7 +25,10 @@ const GameDisplay: React.FC = () => {
     <>
       <ReactTooltip>{tooltipContent}</ReactTooltip>
       <AnswerSelector show={game.activeCountryId >= 0} coords={answerSelectorPos} />
-      <LivesDisplay />
+      <div style={{display: 'flex', justifyContent: 'center', width: '100vw'}}>
+        <LivesDisplay />
+        <ScoreDisplay />
+      </div>
       <AnswerResultPopup />
       <Map
         setTooltip={setTooltipContent}

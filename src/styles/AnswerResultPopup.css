@@ -35,13 +35,13 @@
 
 .answer-result-displayed {
   visibility: visible;
-  animation: display-result 1.4s forwards ease-in-out;
+  animation: display-result 1.8s forwards ease-in-out;
 }
 
 @keyframes display-result {
   0% {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(-40px);
   }
 
   25%, 75% {
@@ -51,6 +51,6 @@
 
   100% {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(40px);
   }
 }

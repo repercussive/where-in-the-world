@@ -20,6 +20,7 @@
   stroke-width: 0.5px;
   outline: none;
   cursor: default;
+  transition: fill 0.2s;
 }
 
 .country-answer-option:hover {

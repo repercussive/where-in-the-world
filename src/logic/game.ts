@@ -17,6 +17,7 @@ class Game {
   public userGuesses: Array<{ id: number, countryName: string }> = [];
   public activeCountryId: number = -1;
   public lives = 3;
+  public score = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -38,6 +39,7 @@ class Game {
       // TODO: Make sure game can be won.
       this.uncompletedCountries = this.uncompletedCountries.filter(name => !this.answerOptions.includes(name));
       this.answerOptions.forEach(name => this.completedCountries.push(name));
+      this.score += 10;
       this.setAnswerOptions();
     } else {
       this.lives--;

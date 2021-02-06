@@ -9,9 +9,9 @@ const LivesDisplay: React.FC = () => {
   const game = useContext(GameContext);
   const lives = game.lives;
   return (
-    <div id="lives-display">
-      <div id="lives-container">
-        <span id="lives-label">Lives</span>
+    <div className="game-hud-container">
+      <div className="game-hud-content">
+        <span className="game-hud-label">Lives</span>
         {Array.from({ length: 3 }).map((_, index) => (
           <div key={index} className="life">
             <FontAwesomeIcon
