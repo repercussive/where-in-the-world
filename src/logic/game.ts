@@ -7,8 +7,6 @@ type CountryDataItem = {
   popRank: number
 }
 
-export type AnswerResultEvent = CustomEvent<{ result: 'correct' | 'incorrect' }>
-
 class Game {
   public countryData: CountryDataItem[] = [];
   public uncompletedCountries: string[] = [];
@@ -18,6 +16,7 @@ class Game {
   public activeCountryId: number = -1;
   public lives = 3;
   public score = 0;
+  private questionStartTime = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -30,22 +29,26 @@ class Game {
       this.getCountryNameById(guess.id) === guess.countryName
     ))
 
-    const resultEvent: AnswerResultEvent =
-      new CustomEvent('answerResult', {
-        detail: { result: isCorrect ? 'correct' : 'incorrect' }
-      });
+    let speedBonus = false;
 
     if (isCorrect) {
       // TODO: Make sure game can be won.
       this.uncompletedCountries = this.uncompletedCountries.filter(name => !this.answerOptions.includes(name));
       this.answerOptions.forEach(name => this.completedCountries.push(name));
-      this.score += 10;
+      const currentTime = new Date().getTime();
+      speedBonus = currentTime - this.questionStartTime < 10000;
+      const points = speedBonus ? 30 : 10;
+      this.score += points;
       this.setAnswerOptions();
     } else {
       this.lives--;
       this.resetUserGuesses();
     }
 
+    const resultEvent =
+      new CustomEvent('answerResult', {
+        detail: { result: isCorrect ? 'correct' : 'incorrect', speedBonus }
+      });
     document.dispatchEvent(resultEvent);
   }
 
@@ -112,15 +115,16 @@ class Game {
   }
 
   private setAnswerOptions() {
-    this.answerOptions = []
+    this.answerOptions = [];
     for (let i = 0; i < Math.min(3, this.uncompletedCountries.length); i++) {
       const nextCountry = this.uncompletedCountries[i];
       if (nextCountry) this.answerOptions.push(this.uncompletedCountries[i]);
     }
+    this.questionStartTime = new Date().getTime();
     this.resetUserGuesses();
   }
 
-  resetUserGuesses() {
+  private resetUserGuesses() {
     this.userGuesses = [];
     this.answerOptions.forEach(answer => {
       this.userGuesses.push({

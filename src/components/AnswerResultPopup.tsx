@@ -7,10 +7,14 @@ import '../styles/AnswerResultPopup.css';
 const AnswerResultPopup: React.FC = () => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
+  const speedBonusTextRef = useRef<HTMLDivElement>(null);
+  const pointsTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function showAnswerResult(event: any) {
-      const result = event.detail.result as 'correct' | 'incorrect';
+      const { result, speedBonus } = event.detail as { result: 'correct' | 'incorrect', speedBonus: boolean };
+      speedBonusTextRef.current!.style.display = speedBonus ? 'block' : 'none';
+      pointsTextRef.current!.textContent = (speedBonus ? '+30' : '+10') + ' points';
       popupRef.current?.classList.remove('answer-result-displayed');
       Promise.resolve().then(() => popupRef.current?.classList.add('answer-result-displayed'));
       setIsAnswerCorrect(result === 'correct' ? true : false);
@@ -30,10 +34,10 @@ const AnswerResultPopup: React.FC = () => {
         <div id="answer-result-main-text">
           {isAnswerCorrect ? 'Correct!' : 'Incorrect!'}
         </div>
-        <div id="answer-result-sub-text">
-          {isAnswerCorrect ? '+10 points' : 'Try again.'}
-        </div>
+        <div ref={pointsTextRef} id="answer-result-sub-text" />
+        <div ref={speedBonusTextRef} style={{color: "rgb(49, 173, 69)"}}>Speed bonus!</div>
       </div>
+      
     </div>
   )
 }
