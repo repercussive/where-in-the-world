@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import Map from './Map';
 import ReactTooltip from 'react-tooltip';
 import AnswerSelector from './AnswerSelector';
-import { GameContext } from '../App';
+import { GameContext } from '../../App';
 import GuessSubmit from './GuessSubmit';
 import LivesDisplay from './LivesDisplay';
 import AnswerResultPopup from './AnswerResultPopup';
 import ScoreDisplay from './ScoreDisplay';
-import '../styles/GameDisplay.css';
+import '../../styles/GameDisplay.css';
 
 const GameDisplay: React.FC = () => {
   const game = useContext(GameContext);

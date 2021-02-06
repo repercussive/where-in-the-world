@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
-import { GameContext } from '../App';
+import { GameContext } from '../../App';
 
 const ScoreDisplay: React.FC = () => {
   const game = useContext(GameContext);

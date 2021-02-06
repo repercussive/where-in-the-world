@@ -2,9 +2,9 @@ import React, { memo, useContext } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import { PatternLines } from '@vx/pattern';
 import { observer } from 'mobx-react-lite';
-import { GameContext } from '../App';
-import '../styles/Map.css';
-const mapData = require('../assets/topo.json');
+import { GameContext } from '../../App';
+import '../../styles/Map.css';
+const mapData = require('../../assets/topo.json');
 
 interface Props {
   setTooltip: (content: string) => void,

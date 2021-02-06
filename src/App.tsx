@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import './App.css';
-import GameDisplay from './components/GameDisplay';
+import GameDisplay from './components/gameplay/GameDisplay';
 import SignInSection from './components/SignInSection';
 import Game from './logic/game';
 
