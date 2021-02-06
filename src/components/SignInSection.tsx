@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 import Authenticator from '../logic/authentication';
-import '../styles/SignInSection.css';
+import './SignInSection.css';
 const auth = new Authenticator();
 
 const SignInSection: React.FC = () => {

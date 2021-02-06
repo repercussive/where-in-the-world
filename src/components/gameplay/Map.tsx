@@ -3,7 +3,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simp
 import { PatternLines } from '@vx/pattern';
 import { observer } from 'mobx-react-lite';
 import { GameContext } from '../../App';
-import '../../styles/Map.css';
+import './Map.css';
 const mapData = require('../../assets/topo.json');
 
 interface Props {

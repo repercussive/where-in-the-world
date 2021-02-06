@@ -8,7 +8,7 @@ import GuessSubmit from './GuessSubmit';
 import LivesDisplay from './LivesDisplay';
 import AnswerResultPopup from './AnswerResultPopup';
 import ScoreDisplay from './ScoreDisplay';
-import '../../styles/GameDisplay.css';
+import './GameDisplay.css';
 
 const GameDisplay: React.FC = () => {
   const game = useContext(GameContext);

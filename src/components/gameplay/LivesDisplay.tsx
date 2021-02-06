@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { observer } from 'mobx-react-lite';
 import { GameContext } from '../../App';
-import '../../styles/LivesDisplay.css';
+import './LivesDisplay.css';
 
 const LivesDisplay: React.FC = () => {
   const game = useContext(GameContext);

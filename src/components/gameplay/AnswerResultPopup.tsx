@@ -2,7 +2,7 @@ import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useRef, useState } from 'react';
-import '../../styles/AnswerResultPopup.css';
+import './AnswerResultPopup.css';
 
 const AnswerResultPopup: React.FC = () => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);

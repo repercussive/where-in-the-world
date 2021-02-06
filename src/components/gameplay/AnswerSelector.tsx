@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useRef } from 'react';
 import { GameContext } from '../../App';
-import '../../styles/AnswerSelector.css';
+import './AnswerSelector.css';
 
 interface Props {
   show: boolean,

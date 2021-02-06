@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import { GameContext } from '../../App';
-import '../../styles/GuessSubmit.css';
+import './GuessSubmit.css';
 
 const GuessSubmit: React.FC = () => {
   const game = useContext(GameContext);
