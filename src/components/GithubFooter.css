@@ -1,0 +1,13 @@
+.footer {
+  margin-top: auto;
+  margin-bottom: 5px;
+  min-height: 20px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer > * {
+  margin: 0px 5px;
+}

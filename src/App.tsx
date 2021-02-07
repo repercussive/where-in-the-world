@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import './App.css';
 import EndScreen from './components/end/EndScreen';
 import GameScreen from './components/gameplay/GameScreen';
+import GithubFooter from './components/GithubFooter';
 import SignInSection from './components/SignInSection';
 import TutorialScreen from './components/tutorial/TutorialScreen';
 import Game from './logic/game';
@@ -17,7 +18,7 @@ function App() {
   const [screen, setScreen] = useState<Screen>('tutorial');
 
   return (
-    <div>
+    <div id="app-container">
       <SignInSection />
       <MainHeader />
 
@@ -28,6 +29,8 @@ function App() {
           {screen === 'end' && <EndScreen />}
         </GameContext.Provider>
       </ScreenContext.Provider>
+
+      <GithubFooter />
     </div>
   );
 }
