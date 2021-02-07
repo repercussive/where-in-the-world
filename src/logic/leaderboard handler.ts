@@ -45,9 +45,14 @@ export default class LeaderboardHandler {
     let aggregatedScores = await this.getAggregatedScores();
     aggregatedScores = aggregatedScores.sort((a, b) => b - a);
 
+    let bestScore = this.newScore;
+    if (this.previousBest && this.previousBest > this.newScore) {
+      bestScore = this.previousBest;
+    }
+
     let rank = 1;
     for (let i = 0; i < aggregatedScores.length; i++) {
-      if (this.newScore < aggregatedScores[i]) {
+      if (bestScore < aggregatedScores[i]) {
         rank++;
       } else {
         break;

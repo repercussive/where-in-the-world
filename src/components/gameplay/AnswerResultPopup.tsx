@@ -14,7 +14,6 @@ const AnswerResultPopup: React.FC = () => {
 
   useEffect(() => {
     function showAnswerResult(event: any) {
-      console.log("received event");
       const { result, speedBonus } = event.detail as { result: 'correct' | 'incorrect', speedBonus: boolean };
       speedBonusTextRef.current!.style.display = speedBonus ? 'block' : 'none';
         if (result === 'correct') {
