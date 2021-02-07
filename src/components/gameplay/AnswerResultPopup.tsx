@@ -22,7 +22,8 @@ const AnswerResultPopup: React.FC = () => {
           pointsTextRef.current!.textContent = game.lives > 0 ? 'Try again.' : 'Out of lives!';
         }
         popupRef.current?.classList.remove('answer-result-displayed');
-        Promise.resolve().then(() => popupRef.current?.classList.add('answer-result-displayed'));
+        void popupRef.current?.offsetHeight;
+        popupRef.current?.classList.add('answer-result-displayed');
         setIsAnswerCorrect(result === 'correct' ? true : false);
     }
 
