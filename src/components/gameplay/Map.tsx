@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useEffect, useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import { PatternLines } from '@vx/pattern';
 import { observer } from 'mobx-react-lite';
@@ -12,30 +12,38 @@ interface Props {
 }
 
 const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
+  const [isPanning, setIsPanning] = useState(false);
   const game = useContext(GameContext);
   const activeCountryId = game.activeCountryId;
   const answerOptions = game.answerOptions;
   const userGuesses = game.userGuesses;
+  const mousePos = useMousePosition();
 
-  function handleClickCountry(e: React.MouseEvent, countryName: string, countryId: number) {
+  function handleClickCountry(countryName: string, countryId: number) {
     if (game.isGameOver) return;
-    e.stopPropagation();
     if (game.answerOptions.includes(countryName)) {
-      setAnswerSelectorPos([e.clientX, e.clientY]);
+      setAnswerSelectorPos([mousePos[0], mousePos[1]]);
       game.setActiveCountryId(countryId);
     }
     setTooltip('');
   }
 
+  function removeCountryFocus() {
+    game.setActiveCountryId(-1);
+    try {
+      (document.activeElement as HTMLElement).blur();
+    } catch {}
+  }
+
   return (
     <>
       <div id="map-container">
-        <ComposableMap id="main-map" data-tip="" onMouseEnter={() => game.setActiveCountryId(-1)}>
+        <ComposableMap id="main-map" data-tip="" onMouseEnter={removeCountryFocus}>
           <PatternLines
             id="answered" height={4} width={4} stroke="#776865" strokeWidth={0.5}
             background="skyblue" orientation={["diagonal"]}
           />
-          <ZoomableGroup center={[16,0]} >
+          <ZoomableGroup center={[16, 0]} onMoveStart={() => setIsPanning(true)} onMoveEnd={() => setIsPanning(false)}>
             <Geographies geography={mapData}>
               {({ geographies }) =>
                 geographies.map(geo => {
@@ -53,12 +61,12 @@ const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
                       ${isCompleted && 'country-completed'} 
                       ${activeCountryId === countryId && 'country-active'}
                     `}
-                    fill={isAnswerOption ? 
-                      (!!userGuess ? 'url(#answered)' : 'orange') 
+                    fill={isAnswerOption ?
+                      (!!userGuess ? 'url(#answered)' : 'orange')
                       : 'rgb(225, 225, 225)'
                     }
-                    onClick={(e) => handleClickCountry(e, countryName, countryId)}
-                    onMouseEnter={() => setTooltip(isAnswerOption ? `${userGuess}?` : (isCompleted ? countryName : ''))}
+                    onFocus={() => handleClickCountry(countryName, countryId)}
+                    onMouseEnter={() => setTooltip(isPanning ? '' : (isAnswerOption ? `${userGuess}?` : (isCompleted ? countryName : '')))}
                     onMouseLeave={() => setTooltip('')}
                   />)
                 })
@@ -69,6 +77,20 @@ const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
       </div>
     </>
   )
+}
+
+function useMousePosition() {
+  const [mousePos, setMousePos] = useState([0,0]);
+
+  useEffect(() => {
+    function handleMouseDown(e: MouseEvent) {
+      setMousePos([e.clientX, e.clientY]);
+    }
+    document.addEventListener('mousedown', handleMouseDown, true)
+    return () => document.removeEventListener('mousedown', handleMouseDown, true);
+  }, [])
+
+  return mousePos;
 }
 
 export default memo(observer(Map));

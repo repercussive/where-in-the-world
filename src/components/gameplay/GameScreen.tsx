@@ -31,22 +31,25 @@ const GameScreen: React.FC = () => {
   }, [game.isGameOver])
 
   return (
-    <div id="game-screen-container" style={{opacity: game.isGameOver ? 0 : 1}}>
-      <ReactTooltip>{tooltipContent}</ReactTooltip>
-      <AnswerSelector show={game.activeCountryId >= 0} coords={answerSelectorPos} />
-      <div style={{display: 'flex', justifyContent: 'center', width: '100vw'}}>
-        <LivesDisplay />
-        <ScoreDisplay />
+    <div style={{ animation: 'fade-in forwards 0.8s linear' }}>
+      <div id="game-screen-container" style={{ opacity: game.isGameOver ? 0 : 1 }}>
+        <ReactTooltip>{tooltipContent}</ReactTooltip>
+        <AnswerSelector show={game.activeCountryId >= 0} coords={answerSelectorPos} />
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100vw' }}>
+          <LivesDisplay />
+          <ScoreDisplay />
+        </div>
+        <AnswerResultPopup />
+        <Map
+          setTooltip={setTooltipContent}
+          setAnswerSelectorPos={setAnswerSelectorPos}
+        />
+        {!waitingForData &&
+          <GuessSubmit />
+        }
       </div>
-      <AnswerResultPopup />
-      <Map
-        setTooltip={setTooltipContent}
-        setAnswerSelectorPos={setAnswerSelectorPos}
-      />
-      {!waitingForData &&
-        <GuessSubmit />
-      }
     </div>
+
   );
 }
 

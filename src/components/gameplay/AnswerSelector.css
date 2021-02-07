@@ -4,8 +4,8 @@
   position: fixed;
   background-color: transparent;
   border: none;
-  padding: 0px;
-  margin: -5px 0 0 -5px;
+  padding: 25px;
+  margin: -25px;
   width: fit-content;
 }
 

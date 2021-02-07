@@ -19,7 +19,7 @@ const AnswerSelector: React.FC<Props> = ({ show, coords }) => {
       let xOffset = 0;
       const selectorWidth = selectorElement.current.offsetWidth;
       if (coords[0] > window.innerWidth - selectorWidth) {
-        xOffset = selectorWidth;
+        xOffset = selectorWidth - 50;
       }
 
       selectorElement.current.style.left = (coords[0] - xOffset) + 'px';
