@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/whereintheworld/static/css/main.663bbf36.chunk.css",
-    "main.js": "/whereintheworld/static/js/main.b181d281.chunk.js",
-    "main.js.map": "/whereintheworld/static/js/main.b181d281.chunk.js.map",
-    "runtime-main.js": "/whereintheworld/static/js/runtime-main.bc80d071.js",
-    "runtime-main.js.map": "/whereintheworld/static/js/runtime-main.bc80d071.js.map",
-    "static/js/2.93f31595.chunk.js": "/whereintheworld/static/js/2.93f31595.chunk.js",
-    "static/js/2.93f31595.chunk.js.map": "/whereintheworld/static/js/2.93f31595.chunk.js.map",
-    "index.html": "/whereintheworld/index.html",
-    "static/css/main.663bbf36.chunk.css.map": "/whereintheworld/static/css/main.663bbf36.chunk.css.map",
-    "static/js/2.93f31595.chunk.js.LICENSE.txt": "/whereintheworld/static/js/2.93f31595.chunk.js.LICENSE.txt",
-    "static/media/tutorial-a.f27bf1bc.svg": "/whereintheworld/static/media/tutorial-a.f27bf1bc.svg",
-    "static/media/tutorial-b.5ba84acf.svg": "/whereintheworld/static/media/tutorial-b.5ba84acf.svg"
+    "main.css": "/where-in-the-world/static/css/main.663bbf36.chunk.css",
+    "main.js": "/where-in-the-world/static/js/main.b181d281.chunk.js",
+    "main.js.map": "/where-in-the-world/static/js/main.b181d281.chunk.js.map",
+    "runtime-main.js": "/where-in-the-world/static/js/runtime-main.f49b49a8.js",
+    "runtime-main.js.map": "/where-in-the-world/static/js/runtime-main.f49b49a8.js.map",
+    "static/js/2.af0a7e3b.chunk.js": "/where-in-the-world/static/js/2.af0a7e3b.chunk.js",
+    "static/js/2.af0a7e3b.chunk.js.map": "/where-in-the-world/static/js/2.af0a7e3b.chunk.js.map",
+    "index.html": "/where-in-the-world/index.html",
+    "static/css/main.663bbf36.chunk.css.map": "/where-in-the-world/static/css/main.663bbf36.chunk.css.map",
+    "static/js/2.af0a7e3b.chunk.js.LICENSE.txt": "/where-in-the-world/static/js/2.af0a7e3b.chunk.js.LICENSE.txt",
+    "static/media/tutorial-a.f27bf1bc.svg": "/where-in-the-world/static/media/tutorial-a.f27bf1bc.svg",
+    "static/media/tutorial-b.5ba84acf.svg": "/where-in-the-world/static/media/tutorial-b.5ba84acf.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.bc80d071.js",
-    "static/js/2.93f31595.chunk.js",
+    "static/js/runtime-main.f49b49a8.js",
+    "static/js/2.af0a7e3b.chunk.js",
     "static/css/main.663bbf36.chunk.css",
     "static/js/main.b181d281.chunk.js"
   ]
