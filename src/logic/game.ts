@@ -21,8 +21,25 @@ class Game {
 
   constructor() {
     makeAutoObservable(this);
-    this.fetchCountryData();
+    this.initialize = this.initialize.bind(this);
     this.submitGuesses = this.submitGuesses.bind(this);
+    this.initialize();
+  }
+
+  public initialize() {
+    this.isGameOver = false;
+    this.countryData = [];
+    this.uncompletedCountries = [];
+    this.completedCountries = [];
+    this.answerOptions = [];
+    this.userGuesses = [];
+    this.activeCountryId = -1;
+    this.lives = 3;
+    this.score = 0;
+    this.fetchCountryData().then(() => {
+      this.setQuestionOrder();
+      this.setAnswerOptions();
+    });
   }
 
   public submitGuesses() {
@@ -53,7 +70,7 @@ class Game {
       new CustomEvent('answerResult', {
         detail: { result: isCorrect ? 'correct' : 'incorrect', speedBonus }
       });
-      document.dispatchEvent(resultEvent);
+    document.dispatchEvent(resultEvent);
   }
 
   public getCountryNameById(id: number) {
@@ -95,8 +112,6 @@ class Game {
     runInAction(() => {
       this.countryData = docRef.data()!.data as CountryDataItem[];
     })
-    this.setQuestionOrder();
-    this.setAnswerOptions();
   }
 
   private setQuestionOrder() {
