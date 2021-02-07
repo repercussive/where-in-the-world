@@ -14,20 +14,21 @@ const AnswerResultPopup: React.FC = () => {
 
   useEffect(() => {
     function showAnswerResult(event: any) {
+      console.log("received event");
       const { result, speedBonus } = event.detail as { result: 'correct' | 'incorrect', speedBonus: boolean };
       speedBonusTextRef.current!.style.display = speedBonus ? 'block' : 'none';
-      if (result === 'correct') {
-        pointsTextRef.current!.textContent = (speedBonus ? '+30' : '+10') + ' points';
-      } else {
-        pointsTextRef.current!.textContent = game.lives > 0 ? 'Try again.' : 'Out of lives!';
-      }
-      popupRef.current?.classList.remove('answer-result-displayed');
-      Promise.resolve().then(() => popupRef.current?.classList.add('answer-result-displayed'));
-      setIsAnswerCorrect(result === 'correct' ? true : false);
+        if (result === 'correct') {
+          pointsTextRef.current!.textContent = (speedBonus ? '+30' : '+10') + ' points';
+        } else {
+          pointsTextRef.current!.textContent = game.lives > 0 ? 'Try again.' : 'Out of lives!';
+        }
+        popupRef.current?.classList.remove('answer-result-displayed');
+        Promise.resolve().then(() => popupRef.current?.classList.add('answer-result-displayed'));
+        setIsAnswerCorrect(result === 'correct' ? true : false);
     }
 
-    document.addEventListener('answerResult', e => showAnswerResult(e));
-    return () => document.removeEventListener('answerResult', e => showAnswerResult(e));
+    document.addEventListener('answerResult', showAnswerResult);
+    return () => document.removeEventListener('answerResult', showAnswerResult);
   }, [])
 
   return (
