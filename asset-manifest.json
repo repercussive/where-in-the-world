@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/whereintheworld/static/css/main.663bbf36.chunk.css",
+    "main.js": "/whereintheworld/static/js/main.b181d281.chunk.js",
+    "main.js.map": "/whereintheworld/static/js/main.b181d281.chunk.js.map",
+    "runtime-main.js": "/whereintheworld/static/js/runtime-main.bc80d071.js",
+    "runtime-main.js.map": "/whereintheworld/static/js/runtime-main.bc80d071.js.map",
+    "static/js/2.93f31595.chunk.js": "/whereintheworld/static/js/2.93f31595.chunk.js",
+    "static/js/2.93f31595.chunk.js.map": "/whereintheworld/static/js/2.93f31595.chunk.js.map",
+    "index.html": "/whereintheworld/index.html",
+    "static/css/main.663bbf36.chunk.css.map": "/whereintheworld/static/css/main.663bbf36.chunk.css.map",
+    "static/js/2.93f31595.chunk.js.LICENSE.txt": "/whereintheworld/static/js/2.93f31595.chunk.js.LICENSE.txt",
+    "static/media/tutorial-a.f27bf1bc.svg": "/whereintheworld/static/media/tutorial-a.f27bf1bc.svg",
+    "static/media/tutorial-b.5ba84acf.svg": "/whereintheworld/static/media/tutorial-b.5ba84acf.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bc80d071.js",
+    "static/js/2.93f31595.chunk.js",
+    "static/css/main.663bbf36.chunk.css",
+    "static/js/main.b181d281.chunk.js"
+  ]
+}
