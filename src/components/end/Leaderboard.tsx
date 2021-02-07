@@ -26,7 +26,10 @@ const Leaderboard: React.FC = () => {
   return (
     <div id="leaderboard-container">
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {(handler?.previousBest && (handler.previousBest < game.score)) && <div id="new-best-text">New personal best!</div>}
+        {handler?.previousBest && 
+          <div id="new-best-text">
+            {handler.previousBest < game.score ? 'New personal best!' : `Personal best: ${handler.previousBest}`}
+          </div>}
         <div>Your global ranking:</div>
         <div id="user-ranking">{handler?.userRanking}</div>
         <div style={{ color: 'gray' }}>(out of {handler?.worstPossibleRanking})</div>

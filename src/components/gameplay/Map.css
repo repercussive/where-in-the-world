@@ -1,5 +1,5 @@
 #map-container {
-  --country-active-color: rgb(252, 196, 93);
+  --country-active-color: rgb(255, 224, 166);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@
   cursor: move;
 }
 
-.geography {
+.geography {  
   stroke: rgb(145, 145, 145);
   stroke-width: 0.5px;
   outline: none;
