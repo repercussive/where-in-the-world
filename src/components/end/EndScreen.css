@@ -1,0 +1,17 @@
+#end-screen {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fade-in forwards 1s linear;
+}
+
+#end-score {
+  margin-top: 12px;
+  border: solid 1px gray;
+  border-radius: 10px;
+  padding: 8px 15px;
+  box-shadow: var(--default-shadow);
+  font-weight: 600;
+}

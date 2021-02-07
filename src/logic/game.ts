@@ -8,6 +8,7 @@ type CountryDataItem = {
 }
 
 class Game {
+  public isGameOver = false;
   public countryData: CountryDataItem[] = [];
   public uncompletedCountries: string[] = [];
   public completedCountries: string[] = [];
@@ -32,7 +33,6 @@ class Game {
     let speedBonus = false;
 
     if (isCorrect) {
-      // TODO: Make sure game can be won.
       this.uncompletedCountries = this.uncompletedCountries.filter(name => !this.answerOptions.includes(name));
       this.answerOptions.forEach(name => this.completedCountries.push(name));
       const currentTime = new Date().getTime();
@@ -45,11 +45,15 @@ class Game {
       this.resetUserGuesses();
     }
 
+    if (this.lives === 0 || this.uncompletedCountries.length === 0) {
+      this.isGameOver = true;
+    }
+
     const resultEvent =
       new CustomEvent('answerResult', {
         detail: { result: isCorrect ? 'correct' : 'incorrect', speedBonus }
       });
-    document.dispatchEvent(resultEvent);
+      document.dispatchEvent(resultEvent);
   }
 
   public getCountryNameById(id: number) {

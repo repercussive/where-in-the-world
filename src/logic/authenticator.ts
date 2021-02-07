@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { auth } from './firebase';
 
 const provider = new auth.GoogleAuthProvider();
@@ -10,6 +10,10 @@ class Authenticator {
     makeAutoObservable(this);
     this.googleSignIn = this.googleSignIn.bind(this);
     this.signOut = this.signOut.bind(this);
+
+    auth().onAuthStateChanged((user) => {
+      runInAction(() => this.userDisplayName = user?.displayName)
+    })
   }
 
   public googleSignIn() {
@@ -34,7 +38,7 @@ class Authenticator {
   }
 
   public signOut() {
-    auth().signOut().then(() => this.userDisplayName = '');
+    auth().signOut().then(() => runInAction(() => this.userDisplayName = ''));
   }
 
   private setUsername(name: string | null | undefined) {
@@ -43,4 +47,6 @@ class Authenticator {
   }
 }
 
-export default Authenticator; 
+const authenticator = new Authenticator();
+
+export default authenticator; 

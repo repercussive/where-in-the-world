@@ -3,14 +3,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import Map from './Map';
 import ReactTooltip from 'react-tooltip';
 import AnswerSelector from './AnswerSelector';
-import { GameContext } from '../../App';
+import { GameContext, ScreenContext } from '../../App';
 import GuessSubmit from './GuessSubmit';
 import LivesDisplay from './LivesDisplay';
 import AnswerResultPopup from './AnswerResultPopup';
 import ScoreDisplay from './ScoreDisplay';
-import './GameDisplay.css';
+import './GameScreen.css';
 
-const GameDisplay: React.FC = () => {
+const GameScreen: React.FC = () => {
+  const setScreen = useContext(ScreenContext);
   const game = useContext(GameContext);
   const [answerSelectorPos, setAnswerSelectorPos] = useState([0, 0] as [number, number]);
   const [tooltipContent, setTooltipContent] = useState('');
@@ -21,8 +22,16 @@ const GameDisplay: React.FC = () => {
     return () => document.removeEventListener('mousedown', () => setTooltipContent(''), true);
   }, [])
 
+  useEffect(() => {
+    if (game.isGameOver) {
+      setTimeout(() => {
+        setScreen('end');
+      }, 3000);
+    }
+  }, [game.isGameOver])
+
   return (
-    <>
+    <div id="game-screen-container" style={{opacity: game.isGameOver ? 0 : 1}}>
       <ReactTooltip>{tooltipContent}</ReactTooltip>
       <AnswerSelector show={game.activeCountryId >= 0} coords={answerSelectorPos} />
       <div style={{display: 'flex', justifyContent: 'center', width: '100vw'}}>
@@ -37,8 +46,8 @@ const GameDisplay: React.FC = () => {
       {!waitingForData &&
         <GuessSubmit />
       }
-    </>
+    </div>
   );
 }
 
-export default observer(GameDisplay);
+export default observer(GameScreen);

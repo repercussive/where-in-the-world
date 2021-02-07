@@ -1,3 +1,7 @@
+#game-screen-container {
+  transition: opacity 3s cubic-bezier(.8,.1,.96,.54);
+}
+
 .game-hud-container {
   display: flex;
   justify-content: center;

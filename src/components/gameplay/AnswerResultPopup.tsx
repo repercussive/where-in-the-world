@@ -1,10 +1,12 @@
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { observer } from 'mobx-react-lite';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { GameContext } from '../../App';
 import './AnswerResultPopup.css';
 
 const AnswerResultPopup: React.FC = () => {
+  const game = useContext(GameContext);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const speedBonusTextRef = useRef<HTMLDivElement>(null);
@@ -14,7 +16,11 @@ const AnswerResultPopup: React.FC = () => {
     function showAnswerResult(event: any) {
       const { result, speedBonus } = event.detail as { result: 'correct' | 'incorrect', speedBonus: boolean };
       speedBonusTextRef.current!.style.display = speedBonus ? 'block' : 'none';
-      pointsTextRef.current!.textContent = (speedBonus ? '+30' : '+10') + ' points';
+      if (result === 'correct') {
+        pointsTextRef.current!.textContent = (speedBonus ? '+30' : '+10') + ' points';
+      } else {
+        pointsTextRef.current!.textContent = game.lives > 0 ? 'Try again.' : 'Out of lives!';
+      }
       popupRef.current?.classList.remove('answer-result-displayed');
       Promise.resolve().then(() => popupRef.current?.classList.add('answer-result-displayed'));
       setIsAnswerCorrect(result === 'correct' ? true : false);

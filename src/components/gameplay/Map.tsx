@@ -18,6 +18,7 @@ const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
   const userGuesses = game.userGuesses;
 
   function handleClickCountry(e: React.MouseEvent, countryName: string, countryId: number) {
+    if (game.isGameOver) return;
     e.stopPropagation();
     if (game.answerOptions.includes(countryName)) {
       setAnswerSelectorPos([e.clientX, e.clientY]);

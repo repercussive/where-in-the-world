@@ -1,19 +1,18 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import Authenticator from '../logic/authentication';
+import auth from '../logic/authenticator';
 import './SignInSection.css';
-const auth = new Authenticator();
 
 const SignInSection: React.FC = () => {
-  const userName = auth.userDisplayName;
+  const username = auth.userDisplayName;
   return (
     <div id="sign-in-section">
       <div className="signed-in-text">
-        {!!userName ? <span>Signed in as <strong>{userName}</strong></span> : 'Sign in to save your score'} 
+        {!!username ? <span>Signed in as <strong>{username}</strong></span> : 'Sign in to save your score'} 
       </div>
       <button
         className="sign-in-button"
-        onClick={!!userName ? auth.signOut : auth.googleSignIn}>{!!userName ? 'Sign out' : 'Sign in'}
+        onClick={!!username ? auth.signOut : auth.googleSignIn}>{!!username ? 'Sign out' : 'Sign in'}
       </button>
     </div>
 
