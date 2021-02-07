@@ -45,7 +45,7 @@ const Leaderboard: React.FC = () => {
             </div>
           ))}
         </div>
-        <button onClick={newGame}>Play again</button>
+        <button className="start-game-button" onClick={newGame}>Play again</button>
       </div>
     </div>
   )

@@ -32,3 +32,19 @@
 .title-d {
   color: rgb(11, 44, 58);
 }
+
+.start-game-button {
+  border: none;
+  outline: none;
+  background-color: rgb(30, 173, 85);
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 8px 14px;
+  box-shadow: var(--default-shadow);
+}
+
+.start-game-button:hover {
+  background-color: rgb(14, 143, 63);
+}
