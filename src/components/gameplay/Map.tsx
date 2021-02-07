@@ -66,7 +66,13 @@ const Map: React.FC<Props> = ({ setTooltip, setAnswerSelectorPos }) => {
                       : 'rgb(225, 225, 225)'
                     }
                     onFocus={() => handleClickCountry(countryName, countryId)}
-                    onMouseEnter={() => setTooltip(isPanning ? '' : (isAnswerOption ? `${userGuess}?` : (isCompleted ? countryName : '')))}
+                    onMouseEnter={() => setTooltip((() => {
+                      if (isPanning) return '';
+                      if (isAnswerOption) {
+                        return game.isGameOver ? countryName : `${userGuess}?`;
+                      } 
+                      return (isCompleted ? countryName : '')
+                    })())}
                     onMouseLeave={() => setTooltip('')}
                   />)
                 })
