@@ -1,14 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useEffect, useState } from 'react';
 import './Leaderboard.css';
-import { GameContext, ScreenContext } from '../../App';
+import { GameContext, SetScreenContext } from '../../App';
 import LeaderboardHandler from '../../logic/leaderboard handler';
 import { auth } from '../../logic/firebase';
 
 
 const Leaderboard: React.FC = () => {
   const game = useContext(GameContext);
-  const setScreen = useContext(ScreenContext);
+  const setScreen = useContext(SetScreenContext);
   const [handler, setHandler] = useState<LeaderboardHandler>();
 
   function newGame() {

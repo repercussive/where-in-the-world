@@ -2,14 +2,15 @@ import React, { createContext, useState } from 'react';
 import './App.css';
 import EndScreen from './components/end/EndScreen';
 import GameScreen from './components/gameplay/GameScreen';
-import GithubFooter from './components/GithubFooter';
-import SignInSection from './components/SignInSection';
+import GithubFooter from './components/_global/GithubFooter';
+import MainHeader from './components/_global/MainHeader';
+import SignInSection from './components/_global/SignInSection';
 import TutorialScreen from './components/tutorial/TutorialScreen';
 import Game from './logic/game';
 
 type Screen = 'tutorial' | 'game' | 'end';
-type ScreenContextSetter = React.Dispatch<React.SetStateAction<Screen>>;
-export const ScreenContext = createContext<ScreenContextSetter>({} as ScreenContextSetter);
+type ScreenSetter = React.Dispatch<React.SetStateAction<Screen>>;
+export const SetScreenContext = createContext<ScreenSetter>({} as ScreenSetter);
 
 const game = new Game();
 export const GameContext = createContext<Game>({} as Game);
@@ -22,28 +23,17 @@ function App() {
       <SignInSection />
       <MainHeader />
 
-      <ScreenContext.Provider value={setScreen}>
+      <SetScreenContext.Provider value={setScreen}>
         {screen === 'tutorial' && <TutorialScreen />}
         <GameContext.Provider value={game}>
           {screen === 'game' && <GameScreen />}
           {screen === 'end' && <EndScreen />}
         </GameContext.Provider>
-      </ScreenContext.Provider>
+      </SetScreenContext.Provider>
 
       <GithubFooter />
     </div>
   );
-}
-
-const MainHeader = () => {
-  return (
-    <h1 id="main-header">
-      <span className="title-a">where</span>
-      <span className="title-b">in</span>
-      <span className="title-c">the</span>
-      <span className="title-d">world</span>
-    </h1>
-  )
 }
 
 export default App;

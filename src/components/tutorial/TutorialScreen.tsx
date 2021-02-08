@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { ScreenContext } from '../../App';
+import { SetScreenContext } from '../../App';
 import './TutorialScreen.css';
 import tutorialA from '../../assets/tutorial-a.svg';
 import tutorialB from '../../assets/tutorial-b.svg';
 
 const TutorialScreen: React.FC = () => {
-  const setScreen = useContext(ScreenContext);
+  const setScreen = useContext(SetScreenContext);
   return (
     <div id="tutorial-screen">
       <div id="tutorial-container">

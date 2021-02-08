@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import auth from '../logic/authenticator';
+import auth from '../../logic/authenticator';
 import './SignInSection.css';
 
 const SignInSection: React.FC = () => {
@@ -15,7 +15,6 @@ const SignInSection: React.FC = () => {
         onClick={!!username ? auth.signOut : auth.googleSignIn}>{!!username ? 'Sign out' : 'Sign in'}
       </button>
     </div>
-
   )
 }
 

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Map from './Map';
 import ReactTooltip from 'react-tooltip';
 import AnswerSelector from './AnswerSelector';
-import { GameContext, ScreenContext } from '../../App';
+import { GameContext, SetScreenContext } from '../../App';
 import GuessSubmit from './GuessSubmit';
 import LivesDisplay from './LivesDisplay';
 import AnswerResultPopup from './AnswerResultPopup';
@@ -11,7 +11,7 @@ import ScoreDisplay from './ScoreDisplay';
 import './GameScreen.css';
 
 const GameScreen: React.FC = () => {
-  const setScreen = useContext(ScreenContext);
+  const setScreen = useContext(SetScreenContext);
   const game = useContext(GameContext);
   const [answerSelectorPos, setAnswerSelectorPos] = useState([0, 0] as [number, number]);
   const [tooltipContent, setTooltipContent] = useState('');
