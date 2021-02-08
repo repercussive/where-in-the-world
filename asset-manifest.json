@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/where-in-the-world/static/css/main.2ee860d7.chunk.css",
-    "main.js": "/where-in-the-world/static/js/main.e3319fc7.chunk.js",
-    "main.js.map": "/where-in-the-world/static/js/main.e3319fc7.chunk.js.map",
+    "main.css": "/where-in-the-world/static/css/main.6a2294f0.chunk.css",
+    "main.js": "/where-in-the-world/static/js/main.e43910f7.chunk.js",
+    "main.js.map": "/where-in-the-world/static/js/main.e43910f7.chunk.js.map",
     "runtime-main.js": "/where-in-the-world/static/js/runtime-main.f49b49a8.js",
     "runtime-main.js.map": "/where-in-the-world/static/js/runtime-main.f49b49a8.js.map",
-    "static/js/2.4e65263d.chunk.js": "/where-in-the-world/static/js/2.4e65263d.chunk.js",
-    "static/js/2.4e65263d.chunk.js.map": "/where-in-the-world/static/js/2.4e65263d.chunk.js.map",
+    "static/js/2.9824d690.chunk.js": "/where-in-the-world/static/js/2.9824d690.chunk.js",
+    "static/js/2.9824d690.chunk.js.map": "/where-in-the-world/static/js/2.9824d690.chunk.js.map",
     "index.html": "/where-in-the-world/index.html",
-    "static/css/main.2ee860d7.chunk.css.map": "/where-in-the-world/static/css/main.2ee860d7.chunk.css.map",
-    "static/js/2.4e65263d.chunk.js.LICENSE.txt": "/where-in-the-world/static/js/2.4e65263d.chunk.js.LICENSE.txt",
+    "static/css/main.6a2294f0.chunk.css.map": "/where-in-the-world/static/css/main.6a2294f0.chunk.css.map",
+    "static/js/2.9824d690.chunk.js.LICENSE.txt": "/where-in-the-world/static/js/2.9824d690.chunk.js.LICENSE.txt",
     "static/media/tutorial-a.f27bf1bc.svg": "/where-in-the-world/static/media/tutorial-a.f27bf1bc.svg",
     "static/media/tutorial-b.5ba84acf.svg": "/where-in-the-world/static/media/tutorial-b.5ba84acf.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f49b49a8.js",
-    "static/js/2.4e65263d.chunk.js",
-    "static/css/main.2ee860d7.chunk.css",
-    "static/js/main.e3319fc7.chunk.js"
+    "static/js/2.9824d690.chunk.js",
+    "static/css/main.6a2294f0.chunk.css",
+    "static/js/main.e43910f7.chunk.js"
   ]
 }
