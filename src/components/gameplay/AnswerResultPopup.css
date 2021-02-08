@@ -1,7 +1,7 @@
 #answer-result-popup-container {
   position: fixed;
   top: 140px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   opacity: 0;

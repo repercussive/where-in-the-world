@@ -35,7 +35,7 @@ const GameScreen: React.FC = () => {
       <div id="game-screen-container" style={{ opacity: game.isGameOver ? 0 : 1 }}>
         <ReactTooltip>{tooltipContent}</ReactTooltip>
         <AnswerSelector show={game.activeCountryId >= 0} coords={answerSelectorPos} />
-        <div style={{ display: 'flex', justifyContent: 'center', width: '100vw' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
           <LivesDisplay />
           <ScoreDisplay />
         </div>
